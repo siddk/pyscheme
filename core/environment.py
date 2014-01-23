@@ -1,5 +1,5 @@
 """
-env.py
+environment.py
 
 In Scheme, each variable reference is independent to a specific enviroment. For example, 
 given the following trivial example:
@@ -53,4 +53,4 @@ class Environment(dict):
 		"""
 		Finds the first environment in which var appears
 		"""
-		
+
