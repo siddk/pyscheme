@@ -7,7 +7,8 @@ or just unnecessary, it provides control flow for the majority of the interprete
 in which most of the logic for the interpreter is done.
 
 Here is the control flow in the eval function:
-	1. Check is expression is a Symbol (variable) - In Python this just checks if the expression is a string
+	1. First check is if the expression is a Symbol (variable) - In Python this just checks if the expression
+	is a string
 
 	2. Second check is the constant check. If the expression is not a string, or it's not a list, than it's most
 	likely a numerical constant.
@@ -15,4 +16,4 @@ Here is the control flow in the eval function:
 	3. Third check is for the quote special form in Scheme. The interpreter supports functionality for both forms 
 	of quote, "quote" and '.
 
-	4. 
+	4. Fourt
