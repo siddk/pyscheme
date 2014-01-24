@@ -5,9 +5,9 @@ In Scheme, each variable reference is independent to a specific enviroment. For 
 given the following trivial example:
 
 (begin (define x 3)
-	(define (square x)
-		(* x x)))
-	(square x))
+    (define (square x)
+        (* x x)))
+    (square x))
 
 Here, x is defined twice, once in the global environment, and one in the environment of the
 defined function, square. To prevent assignment and reference errors, a new environment must be
@@ -23,9 +23,9 @@ For us though, in writing the Scheme interpreter, all we really care about is fi
 a variable. Let's look at another example:
 
 (define make-account
-	(lambda (balance) 
-		(lambda (amt)
-			(begin (set! balance (+ balance amt)) balance))))
+    (lambda (balance) 
+        (lambda (amt)
+            (begin (set! balance (+ balance amt)) balance))))
 
 (define account_1 (make-account 10))
 (account_1 -2)
@@ -41,16 +41,55 @@ You get the idea.
 
 __author__ = "Sidd Karamcheti"
 
-class Environment(dict):
-	"""
-	An environment frame, comprised of a dictionary of variables mapped to values
-	"""
-	def __init__(self, params = (), args = (), outer_environment = None):
-		self.update(zip(params, args))
-		self.outer = outer
+import math
 
-	def find(self, var):
-		"""
-		Finds the first environment in which var appears
-		"""
+class Environment(dict):
+    """
+    An environment frame, comprised of a dictionary of variables mapped to values
+    """
+    def __init__(self, params = (), args = (), outer_environment = None):
+        self.update(zip(params, args))
+        self.outer = outer
+
+    def find(self, var):
+        """
+        Finds the first environment in which var appears
+        """
+        if var in self:
+            return var
+        else:
+            #Recursive call, base case not necessary because at the global level, it will return null
+            self.outer.find(var)
+
+def global_init(Environment):
+    """
+    Initialize function for the global environment. Adds necessary Scheme functionality, and basic functions
+    """
+    Environment.update(vars(math))
+    Environment.update(
+        {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.div, 
+        'not': operator.not_, '>': operator.gt, '<': operator.lt, '>=': operator.ge, 
+        '<=': operator.le, '=': operator.eq, 'equal?': operator.eq, 'eq?': operator.is_, 
+        'length': len, 'cons': lambda x, y: cons(x, y), 'car':lambda x: x[0],
+        'cdr': lambda x: x[1:], 'append': op.add, 'list':lambda *x: list(x), 
+        'list?': lambda x: isinstance(x,list), 'null?':lambda x: x is None, 
+        'symbol?': lambda x: isinstance(x, str)})
+    return Environment
+    
+def cons(x, y):
+        """
+        My quasi-cons function. Basically, the try block accounts for two of the most-used 
+        cons cases where y is a list, x is an item:
+            1. cons(1, (2, 3)) returns [1, 2, 3]
+            2. cons((1), (2, 3)) returns [[1], 2, 3]
+
+        The except block accounts for the third cons case
+            3. cons(1, 2) returns [1, 2]
+
+        This isn't really (1 . 2), but it'll do for now
+        """
+        try:
+            return [x] + y
+        except:
+            return [x] + [y]
 
