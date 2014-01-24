@@ -11,7 +11,7 @@ the evaluation is done.
 
 Here is the control flow in the eval function:
 	1. First check is if the expression is a Symbol (variable) - In Python this just checks if the expression
-	is a string. The symbol is then found 
+	is a string. The symbol is then found in the environment, and returned.
 
 	2. Second check is the constant check. If the expression is not a string, or it's not a list, than it's most
 	likely a numerical constant.

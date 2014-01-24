@@ -57,7 +57,7 @@ class Environment(dict):
         Finds the first environment in which var appears
         """
         if var in self:
-            return var
+            return self
         else:
             #Recursive call, base case not necessary because at the global level, it will return null
             self.outer_env.find(var)
