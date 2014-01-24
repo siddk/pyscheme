@@ -12,4 +12,7 @@ Here is the control flow in the eval function:
 	2. Second check is the constant check. If the expression is not a string, or it's not a list, than it's most
 	likely a numerical constant.
 
-	3. 
+	3. Third check is for the quote special form in Scheme. The interpreter supports functionality for both forms 
+	of quote, "quote" and '.
+
+	4. 
