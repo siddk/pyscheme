@@ -10,4 +10,4 @@ __author__ = "Sidd Karamcheti"
 from core.environment import *
 
 if __name__ == "__main__":
-	global_environment = global_init(Environment())
+    global_environment = global_init(Environment())
