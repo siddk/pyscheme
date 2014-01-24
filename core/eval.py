@@ -19,4 +19,8 @@ Here is the control flow in the eval function:
 	3. Third check is for the quote special form in Scheme. The interpreter supports functionality for both forms 
 	of quote, "quote" and '. Returns the expression as it is.
 
-	4. Fourth check is for the 
+	4. Fourth check is for the "if" special form. The expression is then tokenized, and separated into three parts:
+	the conditional (test), and the conditional statements, consequence and alternative, respectively. The condition 
+	is then evaluated, and the resulting term is then run through the eval() function again.
+
+	5. 
