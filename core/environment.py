@@ -42,6 +42,7 @@ You get the idea.
 __author__ = "Sidd Karamcheti"
 
 import math
+import operator
 
 class Environment(dict):
     """
@@ -49,7 +50,7 @@ class Environment(dict):
     """
     def __init__(self, params = (), args = (), outer_environment = None):
         self.update(zip(params, args))
-        self.outer = outer
+        self.outer_env = outer_environment
 
     def find(self, var):
         """
@@ -59,7 +60,7 @@ class Environment(dict):
             return var
         else:
             #Recursive call, base case not necessary because at the global level, it will return null
-            self.outer.find(var)
+            self.outer_env.find(var)
 
 def global_init(Environment):
     """
@@ -71,7 +72,7 @@ def global_init(Environment):
         'not': operator.not_, '>': operator.gt, '<': operator.lt, '>=': operator.ge, 
         '<=': operator.le, '=': operator.eq, 'equal?': operator.eq, 'eq?': operator.is_, 
         'length': len, 'cons': lambda x, y: cons(x, y), 'car':lambda x: x[0],
-        'cdr': lambda x: x[1:], 'append': op.add, 'list':lambda *x: list(x), 
+        'cdr': lambda x: x[1:], 'append': operator.add, 'list':lambda *x: list(x), 
         'list?': lambda x: isinstance(x,list), 'null?':lambda x: x is None, 
         'symbol?': lambda x: isinstance(x, str)})
     return Environment
