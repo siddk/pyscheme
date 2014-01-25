@@ -70,7 +70,8 @@ class Environment(dict):
 
 def global_init(Environment):
     """
-    Initialize function for the global environment. Adds necessary Scheme functionality, and basic functions
+    Initialize function for the global environment. Adds necessary Scheme
+    functionality, and basic functions
     """
     Environment.update(vars(math))
     Environment.update(
