@@ -10,5 +10,5 @@ __author__ = "Sidd Karamcheti"
 from core.environment import *
 
 if __name__ == "__main__":
-	#Create global environment to pass to the eval() function
+    #Create global environment to pass to the eval() function
     global_environment = global_init(Environment())

@@ -50,11 +50,13 @@ __author__ = "Sidd Karamcheti"
 import math
 import operator
 
+
 class Environment(dict):
     """
-    An environment frame, comprised of a dictionary of variables mapped to values
+    An environment frame, comprised of a dictionary of variables mapped
+    to values
     """
-    def __init__(self, params = (), args = (), outer_environment = None):
+    def __init__(self, params=(), args=(), outer_environment = None):
         self.update(zip(params, args))
         self.outer_env = outer_environment
 
@@ -65,8 +67,10 @@ class Environment(dict):
         if var in self:
             return self
         else:
-            #Recursive call, base case not necessary because at the global level, it will return null
+            #Recursive call, base case not necessary because
+            #at the global level, it will return null
             self.outer_env.find(var)
+
 
 def global_init(Environment):
     """
@@ -76,14 +80,17 @@ def global_init(Environment):
     Environment.update(vars(math))
     Environment.update(
         {'+': operator.add, '-': operator.sub, '*': operator.mul,
-        '/': operator.div, 'not': operator.not_, '>': operator.gt,
-        '<': operator.lt, '>=': operator.ge, '<=': operator.le,
-        '=': operator.eq, 'equal?': operator.eq, 'eq?': operator.is_,
-        'length': len, 'cons': lambda x, y: cons(x, y), 'car':lambda x: x[0],
-        'cdr': lambda x: x[1:], 'append': operator.add,
-        'list': lambda *x: list(x), 'list?': lambda x: isinstance(x,list),
-        'null?':lambda x: x is None, 'symbol?': lambda x: isinstance(x, str)})
+            '/': operator.div, 'not': operator.not_, '>': operator.gt,
+            '<': operator.lt, '>=': operator.ge, '<=': operator.le,
+            '=': operator.eq, 'equal?': operator.eq, 'eq?': operator.is_,
+            'length': len, 'cons': lambda x, y: cons(x, y),
+            'car': lambda x: x[0], 'cdr': lambda x: x[1:],
+            'append': operator.add, 'list': lambda *x: list(x),
+            'list?': lambda x: isinstance(x, list),
+            'null?': lambda x: x is None,
+            'symbol?': lambda x: isinstance(x, str)})
     return Environment
+
 
 def cons(x, y):
     """
@@ -101,4 +108,3 @@ def cons(x, y):
         return [x] + y
     except:
         return [x] + [y]
-
