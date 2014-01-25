@@ -67,5 +67,9 @@ global_environment = global_init(Environment())
 
 
 def eval(expression, env=global_environment):
+    "Take an expression in a given environment, evaluate it"
 
+    #Case 1
+    if isinstance(expression, str):
+        return env.find(expression)[expression]
 
