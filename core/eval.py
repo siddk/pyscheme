@@ -94,3 +94,11 @@ def eval(expression, env=global_environment):
     elif expression[0] is 'set!':
         (_, variable, exp) = expression
         env.find(variable)[variable] = eval(exp, env)
+
+    #Case 6
+    elif expression[0] is 'define':
+        (_, variable, exp) = expression
+        env[variable] = eval(exp, env)
+
+    #Case 7
+
