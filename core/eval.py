@@ -50,6 +50,11 @@ Here is the control flow in the eval function:
     tokenized into whatever number of expressions, and each is then evaluated
     sequentially, by eval(). Resulting values are returned.
 
-    
+    9. Default check is the procedure check. Sequentially goes through typical 
+    Scheme left-to-right execution. Evaluates any expression.
+
+The parser reads in and tokenizes a Scheme expression, eval() evaluates it. 
+Relatively straightforward.
+"""
 
 
