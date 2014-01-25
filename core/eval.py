@@ -82,5 +82,13 @@ def eval(expression, env=global_environment):
         (_, exp) = expression
         return exp
 
+    #Case 4
+    elif expression[0] is 'if':
+        (_, condition, consequence, alternative) = expression
+        if eval(condition, env):
+            return eval(consequence, env)
+        else:
+            return eval(alternative, env)
 
+    #Case 5
 
