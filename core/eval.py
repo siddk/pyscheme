@@ -46,6 +46,10 @@ Here is the control flow in the eval function:
     then created and returned in Python, with the variables assigned to 
     arguments in a new eval() execution.
 
-    8. 
+    8. Eighth check is for the "begin" special form. The expression is 
+    tokenized into whatever number of expressions, and each is then evaluated
+    sequentially, by eval(). Resulting values are returned.
+
+    
 
 
