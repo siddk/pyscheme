@@ -40,4 +40,12 @@ Here is the control flow in the eval function:
     expression is tokenized into two parts, the variable and the expression.
     This key-value pair is then inserted into the environment.
 
+    7. Seventh check is for the "lambda" special form. Lambda creates an 
+    in-line function or expression, and evaluates it. The expression is 
+    tokenized into two parts, the variables and the expression. A lambda is 
+    then created and returned in Python, with the variables assigned to 
+    arguments in a new eval() execution.
+
+    8. 
+
 
