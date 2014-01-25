@@ -30,4 +30,9 @@ Here is the control flow in the eval function:
     condition is then evaluated, and the resulting term is then run through 
     the eval() function again.
 
-    5. Fifth check is for the 
+    5. Fifth check is for the "set!" operator. Set! reassigns a variable or 
+    field to a different value. The expression is tokenized into two parts, 
+    the variable, and the expression it is being reset to. The variable is 
+    then found in the respective environment, and is then reassigned.
+
+     
