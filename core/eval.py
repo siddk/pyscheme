@@ -18,7 +18,8 @@ Here is the control flow in the eval function:
     in the environment, and returned.
 
     2. Second check is the constant check. If the expression is not a string,
-    or it's not a list, than it's most likely a numerical constant. Returns the constant value.
+    or it's not a list, than it's most likely a numerical constant. Returns
+    the constant value.
 
     3. Third check is for the quote special form in Scheme. The interpreter
     supports functionality for both forms of quote, "quote" and '. Returns the
@@ -58,5 +59,3 @@ Relatively straightforward.
 """
 
 __author__ = "Sidd Karamcheti"
-
-
