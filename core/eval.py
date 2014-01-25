@@ -35,4 +35,9 @@ Here is the control flow in the eval function:
     the variable, and the expression it is being reset to. The variable is 
     then found in the respective environment, and is then reassigned.
 
-     
+    6. Sixth check is for the "define" special form in Scheme. Define assigns 
+    a variable to a value, or a variable to an expression or function. The 
+    expression is tokenized into two parts, the variable and the expression.
+    This key-value pair is then inserted into the environment.
+
+
