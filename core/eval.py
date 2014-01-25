@@ -23,4 +23,4 @@ Here is the control flow in the eval function:
 	the conditional (test), and the conditional statements, consequence and alternative, respectively. The condition 
 	is then evaluated, and the resulting term is then run through the eval() function again.
 
-	5. 
+	5. Fifth check is for the 
