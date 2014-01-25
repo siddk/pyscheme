@@ -101,4 +101,7 @@ def eval(expression, env=global_environment):
         env[variable] = eval(exp, env)
 
     #Case 7
+    elif expression[0] is 'lambda':
+        (_, var, exp) = expression
+        return lambda *args: eval(exp, Environment(var, args, env))
 
