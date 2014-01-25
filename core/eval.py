@@ -73,5 +73,14 @@ def eval(expression, env=global_environment):
     if isinstance(expression, str):
         return env.find(expression)[expression]
 
+    #Case 2
     elif not isinstance(expression, list):
         return expression
+
+    #Case 3
+    elif expression[0] is 'quote' or expression[0] is '\'':
+        (_, exp) = expression
+        return exp
+
+
+
