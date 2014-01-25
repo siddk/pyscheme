@@ -73,3 +73,5 @@ def eval(expression, env=global_environment):
     if isinstance(expression, str):
         return env.find(expression)[expression]
 
+    elif not isinstance(expression, list):
+        return expression
