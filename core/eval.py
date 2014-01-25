@@ -59,3 +59,13 @@ Relatively straightforward.
 """
 
 __author__ = "Sidd Karamcheti"
+
+from core.environment import *
+
+#Create global environment to pass to the eval() function
+global_environment = global_init(Environment())
+
+
+def eval(expression, env=global_environment):
+
+
