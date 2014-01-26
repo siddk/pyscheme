@@ -105,3 +105,8 @@ def eval(expression, env=global_environment):
         (_, var, exp) = expression
         return lambda *args: eval(exp, Environment(var, args, env))
 
+    #Case 8
+    elif expression[0] is 'begin':
+        for exp in expression[1:]:
+            val = eval(exp, env)
+        return val
