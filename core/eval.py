@@ -110,3 +110,9 @@ def eval(expression, env=global_environment):
         for exp in expression[1:]:
             val = eval(exp, env)
         return val
+
+    #Case 9
+    else:
+        exps = [eval(exp, env) for exp in expression]
+        procedure = exps.pop(0)
+        return procedure(*exps)
