@@ -9,5 +9,7 @@ __author__ = "Sidd Karamcheti"
 
 from core.environment import *
 from core.eval import *
+from core.parser import parse
 
 if __name__ == "__main__":
+

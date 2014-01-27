@@ -70,3 +70,13 @@ def getType(token):
             return float(token)
         except ValueError:
             return str(token)
+
+
+def toString(expr):
+    """
+    Converts a python token series back to a readable Scheme expression.
+    """
+    if isinstance(expr, list):
+        return '(' + ' '.join(map(to_string, expr)) + ')'
+    else:
+        return str(expr)
