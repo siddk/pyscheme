@@ -8,6 +8,6 @@ and imports the Environment, Parse, and Eval functionality
 __author__ = "Sidd Karamcheti"
 
 from core.environment import *
+from core.eval import *
 
 if __name__ == "__main__":
-
