@@ -38,4 +38,26 @@ def read(expression_tokens):
     token = expression_tokens.pop(0)
 
     #Get full Scheme expression out of larger set
+    if token is '(':
+        expr = []
+
+        #Recursively add all tokens belonging to a single expression to a list
+        while expression_tokens[0] is not ')':
+            expr.append(read(expression_tokens))
+
+        #Remove ')'
+        expression_tokens.pop(0)
+
+        return expr
+
+    #Check for unexpected parenthesis
+    elif token is ')':
+        raise SyntaxError('unexpected ) while parsing')
+
+    #Get type of token
+    else:
+        return getType(token)
+
+
+
 
