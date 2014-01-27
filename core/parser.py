@@ -13,6 +13,7 @@ def parse(scheme_expression):
     """
     return read(tokenize(scheme_expression))
 
+
 def tokenize(expression):
     """
     Inserts spaces between parentheses in a scheme expression, then splits the expression to keep track of
@@ -22,3 +23,19 @@ def tokenize(expression):
     expression = expression.replace(')', ' ) ')
 
     return expression.split()
+
+
+def read(expression_tokens):
+    """
+    Takes a list of tokens, reads a scheme expression.
+    """
+
+    #Check if tokens are empty
+    if len(expression_tokens) == 0:
+        raise SyntaxError('unexpected EOF while parsing')
+
+    #Pop off first token
+    token = expression_tokens.pop(0)
+
+    #Get full Scheme expression out of larger set
+
