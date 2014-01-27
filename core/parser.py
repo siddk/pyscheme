@@ -59,5 +59,14 @@ def read(expression_tokens):
         return getType(token)
 
 
-
-
+def getType(token):
+    """
+    Gets type of a token. Numbers are bound to ints or floats, symbols to strings.
+    """
+    try:
+        return int(token)
+    except ValueError:
+        try:
+            return float(token)
+        except ValueError:
+            return str(token)
