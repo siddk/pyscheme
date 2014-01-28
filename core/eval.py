@@ -71,6 +71,8 @@ def eval(expression, env=global_environment):
 
     #Case 1
     if isinstance(expression, str):
+        #print env.keys()
+        #print env.outer_env
         return env.find(expression)[expression]
 
     #Case 2
@@ -78,12 +80,12 @@ def eval(expression, env=global_environment):
         return expression
 
     #Case 3
-    elif expression[0] is 'quote' or expression[0] is '\'':
+    elif expression[0] == 'quote' or expression[0] == '\'':
         (_, exp) = expression
         return exp
 
     #Case 4
-    elif expression[0] is 'if':
+    elif expression[0] == 'if':
         (_, condition, consequence, alternative) = expression
         if eval(condition, env):
             return eval(consequence, env)
@@ -91,28 +93,37 @@ def eval(expression, env=global_environment):
             return eval(alternative, env)
 
     #Case 5
-    elif expression[0] is 'set!':
+    elif expression[0] == 'set!':
         (_, variable, exp) = expression
         env.find(variable)[variable] = eval(exp, env)
 
     #Case 6
-    elif expression[0] is 'define':
+    elif expression[0] == 'define':
         (_, variable, exp) = expression
+        #print "Variable: ", variable
         env[variable] = eval(exp, env)
 
     #Case 7
-    elif expression[0] is 'lambda':
+    elif expression[0] == 'lambda':
         (_, var, exp) = expression
-        return lambda *args: eval(exp, Environment(var, args, env))
+        return lambda *args: eval(exp, Environment(var, args, outer_environment=env))
 
     #Case 8
-    elif expression[0] is 'begin':
+    elif expression[0] == 'begin':
         for exp in expression[1:]:
             val = eval(exp, env)
         return val
 
     #Case 9
     else:
-        exps = [eval(exp, env) for exp in expression]
+        #print "Expression: ", expression
+        exps = []
+        for exp in expression:
+            #print "exp in expression: ", exp
+            exps.append(eval(exp, env))
+
         procedure = exps.pop(0)
+        # print "Procedure: ", procedure
+        # print "Exps: ", exps
+        # print "Returning: ", procedure(*exps)
         return procedure(*exps)

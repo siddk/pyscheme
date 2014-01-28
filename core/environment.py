@@ -64,21 +64,25 @@ class Environment(dict):
         """
         Finds the first environment in which var appears
         """
-        if var in self:
+        if var in self.keys():
+            #print "Found in self.keys"
             return self
         else:
             #Recursive call, base case not necessary because
             #at the global level, it will return null
-            self.outer_env.find(var)
+            #print "Not in self"
+            if self.outer_env:
+                #print self.outer_env
+                return self.outer_env.find(var)
 
 
-def global_init(Environment):
+def global_init(Env):
     """
     Initialize function for the global environment. Adds necessary Scheme
     functionality, and basic functions
     """
-    Environment.update(vars(math))
-    Environment.update(
+    Env.update(vars(math))
+    Env.update(
         {'+': operator.add, '-': operator.sub, '*': operator.mul,
             '/': operator.div, 'not': operator.not_, '>': operator.gt,
             '<': operator.lt, '>=': operator.ge, '<=': operator.le,
@@ -89,7 +93,7 @@ def global_init(Environment):
             'list?': lambda x: isinstance(x, list),
             'null?': lambda x: x is None,
             'symbol?': lambda x: isinstance(x, str)})
-    return Environment
+    return Env
 
 
 def cons(x, y):
