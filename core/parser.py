@@ -14,6 +14,13 @@ def parse(scheme_expression):
     return read(tokenize(scheme_expression))
 
 
+def parse_from_file(scheme_file):
+    """
+    Calls the read() function on code in a scheme file.
+    """
+    pass
+
+
 def tokenize(expression):
     """
     Inserts spaces between parentheses in a scheme expression, then splits the expression to keep track of
